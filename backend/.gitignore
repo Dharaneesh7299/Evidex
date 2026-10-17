@@ -1,0 +1,21 @@
+.env
+*.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.db
+*.db-shm
+*.db-wal
+.pytest_cache/
+.DS_Store
+
+# Preserve benchmark & sample PDFs, ignore arbitrary new uploads
+uploads/*.pdf
+!uploads/paper_0606a733a8aa_*.pdf
+!uploads/paper_1b0f34250d2d_*.pdf
+!uploads/paper_dbe3a9508c6f_*.pdf
+!uploads/sample_papers/
+!uploads/sample_papers/**

@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: evidex-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-3.8-flash}
+      - CORS_ORIGINS=["http://localhost:5173", "http://localhost:3000", "http://127.0.0.1:5173", "http://127.0.0.1:3000"]
+      - DATABASE_URL=sqlite:////app/evidex.db
+      - UPLOAD_DIR=/app/uploads
+    volumes:
+      - evidex_data:/app
+    restart: unless-stopped
+
+  frontend:
+    container_name: evidex-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  evidex_data:
