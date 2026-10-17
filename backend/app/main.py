@@ -75,8 +75,9 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     )
 
 
-# Attach API router
+# Attach API router with /api prefix and root fallback for deployment resilience
 app.include_router(api_router, prefix="/api")
+app.include_router(api_router, prefix="", include_in_schema=False)
 
 
 @app.get("/", tags=["System"])
