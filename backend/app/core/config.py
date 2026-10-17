@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     )
 
     gemini_api_key: str = Field(default="", alias="GEMINI_API_KEY")
-    gemini_model: str = Field(default="gemini-3.8-flash", alias="GEMINI_MODEL")
+    gemini_model: str = Field(default="gemini-2.0-flash", alias="GEMINI_MODEL")
 
     database_url: str = Field(
         default=f"sqlite:///{BACKEND_ROOT / ('evidex.db' if (BACKEND_ROOT / 'evidex.db').exists() or not (BACKEND_ROOT / 'paperproof.db').exists() else 'paperproof.db')}",
